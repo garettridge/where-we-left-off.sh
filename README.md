@@ -6,15 +6,17 @@ Progress is continuously saved, allowing you to pick up exactly where you left o
 
 ## Features
 
-- Resume traversal after interruption using a persistent state file
+- Resume traversal after interruption using a persistent state file.
 
-- Multiple operation modes: transfer files (copy), size calculation, diff paths, or print paths
+- Multiple operation modes: transfer files (copy), size calculation, diff paths, or print paths.
 
-- Handles large or unstable storage (external drives, network mounts)
+- Handles large or unstable storage (external drives, network mounts).
 
-- Adjustable delay between operations to reduce system stress and heat
+- Adjustable delay between operations to reduce system stress and heat.
 
-- Tracks total files processed and cumulative size
+- Tracks total files processed and cumulative size.
+
+- 195 lines, one source file.
 
 ## Installation
 
