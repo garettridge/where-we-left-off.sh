@@ -108,3 +108,7 @@ Completed runs are archived to:
 - Files are assumed identical if size and modification time match
 
 - Known print bug with Chinese filenames (characters wider than one column)
+
+## Tip
+
+- If you've reached the point of needing this utility, make sure you try the problematic drive in Windows first.
