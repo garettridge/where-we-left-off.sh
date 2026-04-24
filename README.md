@@ -1,6 +1,6 @@
 # where-we-left-off.sh
 
-A resilient Linux utility for transferring files off of damaged drives.  The key is traversing their directory trees in a way that can safely resume after interruption (e.g., drive disconnects, overheating, crashes). It combines aspects of `du`, `rsync`, `diff`, and `tree` into a single interruptible workflow.
+A resilient Linux utility for transferring files from damaged drives.  The key is traversing their directory trees in a way that can safely resume after interruption (e.g., drive disconnects, overheating, crashes). It combines aspects of `du`, `rsync`, `diff`, and `tree` into a single interruptible workflow.
 
 Progress is continuously saved, allowing you to pick up exactly where you left off.
 
@@ -8,7 +8,7 @@ Progress is continuously saved, allowing you to pick up exactly where you left o
 
 - Resume traversal after interruption using a persistent state file.
 
-- Multiple operation modes: transfer files (copy), size calculation, diff paths, or print paths.
+- Multiple operation modes: transfer files (copy), size calculation, compare directories (diff), or print paths.
 
 - Handles large or unstable storage (external drives, network mounts).
 
@@ -30,57 +30,57 @@ mv where-we-left-off.sh ~/.local/bin/
 ## Usage
 
 ```bash
-where-we-left-off.sh [options] source_directory > [destination_directory]
+where-we-left-off.sh [options] <source_directory> [destination_directory]
 ```
 
 ## Options
 
 - `-c, --copy`
-  Copy files from source to destination using `rsync`
+  Copy files from source to destination using `rsync`.
 
 - `-z, --size`
   Calculate total size only (default mode)
 
 - `-d, --diff`
-  Show files that differ between source and destination (by size or mtime)
+  Show files that differ between source and destination (by size or mtime).
 
 - `-p, --print`
   Print each visited file/directory
 
 - `-s, --status`
-  Show last saved progress (last processed file, count, total size)
+  Show last saved progress (last processed file, count, total size).
 
 - `--clear`
-  Clear saved progress
+  Clear saved progress.
 
 - `-l, --leftoff <path>`
-  Override saved position and resume after this path
+  Override saved position and resume after this path.
 
 - `-r, --rest <seconds>`
-  Delay between processing items (default: 0.01)
+  Delay between processing items (default: 0.01).
 
 - `-h, --help`
-  Show help message
+  Show help message.
 
 ## Examples
 
-Resume or begin a copy operation
+Resume or begin a copy operation:
 ```bash
 where-we-left-off.sh -c /mnt/source /mnt/backup
 ```
-Resume or begin a size calculation
+Resume or begin a size calculation:
 ```bash
 where-we-left-off.sh /mnt/drive
 ```
-Check progress (where we left off)
+Check progress (where we left off):
 ```bash
 where-we-left-off.sh --status
 ```
-Compare two directories
+Compare two directories:
 ```bash
 where-we-left-off.sh -d /mnt/source /mnt/backup
 ```
-Slow down traversal (for fragile drives)
+Slow down traversal (for fragile drives):
 ```bash
 where-we-left-off.sh -r 0.1 /mnt/drive
 ```
@@ -96,7 +96,7 @@ where-we-left-off.sh -r 0.1 /mnt/drive
     - Total files processed
     - Total bytes accumulated
 
-If the script exits unexpectedly, rerunning it continues from the last saved position.
+If the script exits unexpectedly, rerunning it continues from the last saved position (the last file that fully transferred).
 
 Completed runs are archived to:
 ```text
@@ -113,4 +113,4 @@ Completed runs are archived to:
 
 ## Tip
 
-- If you've reached the point of needing this utility, make sure you try the problematic drive in Windows first.
+- If you've reached the point of needing this utility, make sure you try the problematic drive in Windows first.  In my case Linux itself turned out to be the reason my drive was harder to read from.
